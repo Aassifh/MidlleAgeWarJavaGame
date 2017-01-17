@@ -19,7 +19,7 @@ public abstract class GameLevelDefaultImpl extends Thread implements GameLevel {
 	protected ObservableValue<Boolean> endOfGame;
 
 	boolean stopGameLoop;
-
+	
 	protected abstract void init();
 
 	public GameLevelDefaultImpl(Game g) {
@@ -29,6 +29,10 @@ public abstract class GameLevelDefaultImpl extends Thread implements GameLevel {
 	}
 
 	// start of class Thread which calls the run method (see below) 
+	/**
+	 * Start the Game
+	 * @see java.lang.Thread#start()
+	 */
 	@Override
 	public void start() {  
 		endOfGame = g.endOfGame();
@@ -40,7 +44,10 @@ public abstract class GameLevelDefaultImpl extends Thread implements GameLevel {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Run
+	 * @see java.lang.Thread#run()
+	 */
 	@Override
 	public void run() {
 		stopGameLoop = false;
@@ -61,7 +68,9 @@ public abstract class GameLevelDefaultImpl extends Thread implements GameLevel {
 			}
 		}
 	}
-
+	/*
+	 * 
+	 */
 	public void end() {
 		stopGameLoop = true;
 	}

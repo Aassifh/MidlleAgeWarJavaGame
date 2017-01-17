@@ -61,7 +61,10 @@ public class GameDefaultImpl implements Game, Observer {
 		currentLevel = new Label("Level:");
 		createGUI();
 	}
-
+	/**
+	 * Create the game user interface
+	 * @see gameframework.core.Game#createGUI()
+	 */
 	public void createGUI() {
 		f = new Frame("Default Game");
 		f.dispose();
@@ -83,7 +86,10 @@ public class GameDefaultImpl implements Game, Observer {
 			}
 		});
 	}
-
+	/**
+	 * Create the Menu Bar 
+	 * 
+	 */
 	private void createMenuBar() {
 		MenuBar menuBar = new MenuBar();
 		Menu file = new Menu("file");
@@ -136,7 +142,9 @@ public class GameDefaultImpl implements Game, Observer {
 		game.add(pause);
 		game.add(resume);
 	}
-
+	/**
+	 * Create the Status Bar 
+	 */
 	private Container createStatusBar() {
 		JPanel c = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -158,7 +166,10 @@ public class GameDefaultImpl implements Game, Observer {
 	public Canvas getCanvas() {
 		return defaultCanvas;
 	}
-
+	/**
+	 * Start the game
+	 * @see gameframework.core.Game#start()
+	 */
 	public void start() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
 			score[i].addObserver(this);
@@ -185,41 +196,71 @@ public class GameDefaultImpl implements Game, Observer {
 		}
 
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#restore()
+	 */
 	public void restore() {
 		System.out.println("restore(): Unimplemented operation");
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#save()
+	 */
 	public void save() {
 		System.out.println("save(): Unimplemented operation");
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#pause()
+	 */
 	public void pause() {
 		System.out.println("pause(): Unimplemented operation");
 		// currentPlayedLevel.suspend();
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#resume()
+	 */
 	public void resume() {
 		System.out.println("resume(): Unimplemented operation");
 		// currentPlayedLevel.resume();
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#score()
+	 */
 	public ObservableValue<Integer>[] score() {
 		return score;
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#life()
+	 */
 	public ObservableValue<Integer>[] life() {
 		return life;
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Game#endOfGame()
+	 */
 	public ObservableValue<Boolean> endOfGame() {
 		return endOfGame;
 	}
-
+	/** 
+	 * setlevels 
+	 * @param ArrayList<GameLevel> levels
+	 * @see Gamelevel
+	 */
 	public void setLevels(ArrayList<GameLevel> levels) {
 		gameLevels = levels;
 	}
-
+	/**
+	 * Update the observer
+	 * @param Observable
+	 * @param Object 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	public void update(Observable o, Object arg) {
 		if (o == endOfGame) {
 			if (endOfGame.getValue()) {

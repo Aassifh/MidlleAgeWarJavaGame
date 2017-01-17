@@ -3,6 +3,7 @@ package gameframework.core;
 import java.awt.Canvas;
 
 public interface Game {
+	//factory
 	public void createGUI();
 
 	public Canvas getCanvas();
@@ -16,6 +17,10 @@ public interface Game {
 	public void pause();
 
 	public void resume();
+	/** 
+	 * Observer 
+	 * @return
+	 */
 
 	public ObservableValue<Integer>[] score();
 
