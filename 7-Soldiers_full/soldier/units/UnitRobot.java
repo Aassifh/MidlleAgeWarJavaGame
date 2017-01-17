@@ -8,14 +8,15 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import gameframework.core.GameMovable;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 
 public class UnitRobot extends UnitInfantry {
 
-	public UnitRobot(String soldierName) {
-		super(soldierName, new BehaviorSoldierHealthBased( 50, 100));
+	public UnitRobot(String soldierName, GameMovable g) {
+		super(soldierName, new BehaviorSoldierHealthBased( 50, 100),g);
 	}
 
 	/**

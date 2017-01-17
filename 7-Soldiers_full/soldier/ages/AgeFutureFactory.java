@@ -4,6 +4,7 @@
  */
 package soldier.ages;
 
+import gameframework.core.GameMovable;
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Unit;
 import soldier.core.Weapon;
@@ -13,9 +14,9 @@ import soldier.weapon.WeaponGun;
 import soldier.weapon.WeaponShield;
 
 public class AgeFutureFactory implements AgeAbstractFactory {
-
+	// Game Movable adding 
 	@Override
-	public Unit infantryUnit(String name) {
+	public Unit infantryUnit(String name ) {
 		return new UnitRobot(name);
 	}
 

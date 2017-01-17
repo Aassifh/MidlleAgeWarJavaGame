@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import gameframework.core.GameMovable;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitInfantry;
@@ -15,8 +16,8 @@ import soldier.core.Weapon;
 
 public class UnitCenturion extends UnitInfantry {
 
-	public UnitCenturion(String soldierName) {
-		super(soldierName, new BehaviorSoldierStd(15, 100));
+	public UnitCenturion(String soldierName,GameMovable g) {
+		super(soldierName, new BehaviorSoldierStd(15, 100),g);
 	}
 
 	/**

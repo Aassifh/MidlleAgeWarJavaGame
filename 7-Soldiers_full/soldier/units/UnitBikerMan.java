@@ -8,15 +8,16 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import gameframework.core.GameMovable;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitRider;
 import soldier.core.Weapon;
 
-public class UnitBikerMan extends UnitRider {
+public class UnitBikerMan extends UnitRider  {
 
-	public UnitBikerMan(String soldierName) {
-		super(soldierName, new BehaviorSoldierStd(20, 120));
+	public UnitBikerMan(String soldierName,GameMovable g) {
+		super(soldierName, new BehaviorSoldierStd(20, 120),g);
 	}
 
 	/**

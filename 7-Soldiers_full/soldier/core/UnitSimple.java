@@ -4,23 +4,30 @@
  */
 package soldier.core;
 
+import java.awt.Point;
 import java.util.Collections;
 import java.util.Iterator;
 
 import gameframework.core.Drawable;
 import gameframework.core.GameEntity;
+import gameframework.core.GameMovable;
+import gameframework.core.GameMovableDriver;
 import gameframework.core.Overlappable;
+import gameframework.moves_rules.SpeedVector;
 import observer_util.ObservableAbstract;
 
 public abstract class UnitSimple extends ObservableAbstract<Unit>
                                  implements Unit, Drawable, GameEntity, Overlappable {
-
+/**
+ * Brigde pattern to add GameMovable
+ */
 	private BehaviorSoldier behavior;
 	private String name;
-
-	public UnitSimple(String name, BehaviorSoldier behavior) {
+	private GameMovable gameMovable;
+	public UnitSimple(String name, BehaviorSoldier behavior,GameMovable g) {
 		this.behavior = behavior;
 		this.name = name;
+		this.gameMovable=g;
 	}
 
 	@Override
@@ -115,6 +122,35 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 			++result;
 		return result;
 	}
+	public void setPosition(Point p) {
+		this.gameMovable.setPosition(p);
+	}
 
+	public Point getPosition() {
+		return this.gameMovable.getPosition();
+	}
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Movable#setSpeedVector(gameframework.moves_rules.SpeedVector)
+	 */
+	public void setSpeedVector(SpeedVector speedVector) {
+		this.gameMovable.setSpeedVector(speedVector);
+	}
+
+	public SpeedVector getSpeedVector() {
+		return this.gameMovable.getSpeedVector();
+	}
+	
+	public void setDriver(GameMovableDriver driver) {
+		this.gameMovable.setDriver(driver);
+	}
+
+	public GameMovableDriver getDriver() {
+		return this.gameMovable.getDriver();
+	}
+
+	public void oneStepMove() {
+		this.gameMovable.oneStepMove();
+	}
 	
 }
