@@ -10,7 +10,7 @@ public abstract class GameMovable implements Movable {
 
 	Point position = new Point();
 	SpeedVector speedVector = SpeedVectorDefaultImpl.createNullVector();
-
+	
 	public void setPosition(Point p) {
 		position = (Point) p.clone();
 	}
@@ -18,7 +18,10 @@ public abstract class GameMovable implements Movable {
 	public Point getPosition() {
 		return position;
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see gameframework.core.Movable#setSpeedVector(gameframework.moves_rules.SpeedVector)
+	 */
 	public void setSpeedVector(SpeedVector speedVector) {
 		this.speedVector = (SpeedVector) speedVector.clone();
 	}
@@ -26,7 +29,7 @@ public abstract class GameMovable implements Movable {
 	public SpeedVector getSpeedVector() {
 		return (SpeedVector) speedVector.clone();
 	}
-
+	
 	public void setDriver(GameMovableDriver driver) {
 		moveDriver = driver;
 	}

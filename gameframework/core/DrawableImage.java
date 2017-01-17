@@ -10,6 +10,15 @@ public class DrawableImage implements Drawable {
 	protected Image image;
 	protected Canvas canvas;
 
+	/**
+	 * Construct DrawableImage
+	 * 
+	 * @param filename
+	 * 
+	 * @param canvas
+	 * 
+	 * @see canvas
+	 */
 	public DrawableImage(String filename, Canvas canvas) {
 		this.canvas = canvas;
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -22,6 +31,13 @@ public class DrawableImage implements Drawable {
 		}
 	}
 
+	/**
+	 * Method getImage
+	 * 
+	 * @return Image
+	 * 
+	 * @see Image
+	 */
 	public Image getImage() {
 		return image;
 	}
