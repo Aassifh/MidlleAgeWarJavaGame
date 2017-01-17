@@ -4,6 +4,10 @@
  */
 package soldier.units;
 
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitRider;
@@ -32,6 +36,24 @@ public class UnitHorseMan extends UnitRider {
 		if (nbW == 1 && getWeapons().next().getClass() == w.getClass())
 			throw new BreakingRuleException();
 		super.addEquipment(w);
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rectangle getBoundingBox() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

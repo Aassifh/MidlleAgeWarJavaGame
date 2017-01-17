@@ -4,6 +4,10 @@
  */
 package soldier.units;
 
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
@@ -21,6 +25,24 @@ public class UnitRobot extends UnitInfantry {
 	public void addEquipment(Weapon w) {
 		if (nbWeapons()>3) throw new BreakingRuleException();
 		super.addEquipment(w);
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rectangle getBoundingBox() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

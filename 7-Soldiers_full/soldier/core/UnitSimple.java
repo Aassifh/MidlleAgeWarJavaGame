@@ -7,10 +7,13 @@ package soldier.core;
 import java.util.Collections;
 import java.util.Iterator;
 
+import gameframework.core.Drawable;
+import gameframework.core.GameEntity;
+import gameframework.core.Overlappable;
 import observer_util.ObservableAbstract;
 
 public abstract class UnitSimple extends ObservableAbstract<Unit>
-                                 implements Unit {
+                                 implements Unit, Drawable, GameEntity, Overlappable {
 
 	private BehaviorSoldier behavior;
 	private String name;
@@ -112,4 +115,6 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 			++result;
 		return result;
 	}
+
+	
 }
