@@ -41,9 +41,10 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 	public static final int SPRITE_SIZE = 16;
 	// depending on the game  
-	//public static final int NUMBER_OF_GHOSTS = 5;
+	
 	protected void init() {
-
+		
+		
 	}
 
 	public GameLevelOne(Game g) {
