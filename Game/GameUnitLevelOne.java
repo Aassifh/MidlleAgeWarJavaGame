@@ -95,6 +95,7 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		// soldats /ennemi etc..
 		
 		AgeAbstractFactory fact = new AgeFutureFactory();
+		for(int i =0; i<9; i++){
 		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT");
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard KeyStr = new MoveStrategyKeyboard();
@@ -102,20 +103,21 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		UnitDriver.setmoveBlockerChecker(moveBlockerChecker);
 		canvas.addKeyListener(KeyStr);
 		unit.setDriver(UnitDriver);
-		unit.setPosition(new Point(25*SPRITE_SIZE,15*SPRITE_SIZE));
+		unit.setPosition(new Point(i*SPRITE_SIZE,(10+i)*SPRITE_SIZE));
 		universe.addGameEntity(unit);
+		}
 		
-		AgeAbstractFactory fact2 = new AgeFutureFactory();
-		UnitCenturion unit2=(UnitCenturion) fact2.infantryUnit(canvas, "Centurion");
+		UnitRobot unit2;
+		for(int i =0; i<9; i++){
 		GameMovableDriverDefaultImpl UnitDriver2= new GameMovableDriverDefaultImpl();
 		MoveStrategyRandom key = new MoveStrategyRandom();
-		//MoveStrategyKeyboard KeyStr2 = new MoveStrategyKeyboard();
 		UnitDriver2.setStrategy(key);
 		UnitDriver2.setmoveBlockerChecker(moveBlockerChecker);
-		//canvas.addKeyListener(KeyStr2);
+		 unit2=(UnitRobot) fact.infantryUnit(canvas, "Centurion");
 		unit2.setDriver(UnitDriver2);
-		unit2.setPosition(new Point(2*SPRITE_SIZE,15*SPRITE_SIZE));
+		unit2.setPosition(new Point(1*SPRITE_SIZE,15*SPRITE_SIZE));
 		universe.addGameEntity(unit2);
+		}
 		
 	
 	}

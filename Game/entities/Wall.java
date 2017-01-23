@@ -20,7 +20,7 @@ public class Wall implements  Drawable,MoveBlocker,GameEntity {
 	}
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle(x, y, RENDERING_SIZE, RENDERING_SIZE));
+		return (new Rectangle(x-5, y, RENDERING_SIZE, RENDERING_SIZE));
 	}
 
 	@Override
