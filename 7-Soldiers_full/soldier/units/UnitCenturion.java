@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 
 
 import gameframework.core.GameMovable;
+import gameframework.core.SpriteManagerDefaultImpl;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitInfantry;
@@ -20,6 +21,10 @@ public class UnitCenturion extends UnitInfantry {
 
 	public UnitCenturion(Canvas canvas,String soldierName){
 		super(soldierName, new BehaviorSoldierStd(15, 100));
+		
+		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, RENDERING_SIZE, 6);
+		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
+		);
 	}
 
 	/**
@@ -35,7 +40,26 @@ public class UnitCenturion extends UnitInfantry {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		
+		String spriteType = "";
+		Point tmp = getSpeedVector().getDirection();
+
+		if (tmp.getX() == 1)
+			spriteType += "right";
+		else if (tmp.getX() == -1)
+			spriteType += "left";
+		else if (tmp.getY() == 1)
+			spriteType += "down";
+		else if (tmp.getY() == -1)
+			spriteType += "up";
+		else {
+			spriteType = "right";
+			spriteManager.reset();
+			this.movable=false;
+
+		}
+
+		spriteManager.setType(spriteType);
+		spriteManager.draw(g, getPosition());
 	}
 	
 

@@ -25,6 +25,7 @@ import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Unit;
 import soldier.core.UnitSimple;
+import soldier.units.UnitCenturion;
 import soldier.units.UnitRobot;
 
 
@@ -101,10 +102,21 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		UnitDriver.setmoveBlockerChecker(moveBlockerChecker);
 		canvas.addKeyListener(KeyStr);
 		unit.setDriver(UnitDriver);
-		unit.setPosition(new Point(15*SPRITE_SIZE,15*SPRITE_SIZE));
+		unit.setPosition(new Point(25*SPRITE_SIZE,15*SPRITE_SIZE));
 		universe.addGameEntity(unit);
 		
-	
+		AgeAbstractFactory fact2 = new AgeFutureFactory();
+		UnitCenturion unit2=(UnitCenturion) fact2.infantryUnit(canvas, "Centurion");
+		GameMovableDriverDefaultImpl UnitDriver2= new GameMovableDriverDefaultImpl();
+		MoveStrategyRandom key = new MoveStrategyRandom();
+		//MoveStrategyKeyboard KeyStr2 = new MoveStrategyKeyboard();
+		UnitDriver2.setStrategy(key);
+		UnitDriver2.setmoveBlockerChecker(moveBlockerChecker);
+		//canvas.addKeyListener(KeyStr2);
+		unit2.setDriver(UnitDriver2);
+		unit2.setPosition(new Point(2*SPRITE_SIZE,15*SPRITE_SIZE));
+		universe.addGameEntity(unit2);
+		
 	
 	}
 
