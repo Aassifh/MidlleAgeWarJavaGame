@@ -4,7 +4,9 @@
  */
 package soldier.core;
 
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -13,21 +15,27 @@ import gameframework.core.GameEntity;
 import gameframework.core.GameMovable;
 import gameframework.core.GameMovableDriver;
 import gameframework.core.Overlappable;
+import gameframework.core.SpriteManager;
 import gameframework.moves_rules.SpeedVector;
 import observer_util.ObservableAbstract;
 
 public abstract class UnitSimple extends ObservableAbstract<Unit>
-                                 implements Unit, Drawable, GameEntity, Overlappable {
-/**
- * Brigde pattern to add GameMovable
- */
+                                 implements Unit,Drawable, GameEntity, Overlappable{
+
 	private BehaviorSoldier behavior;
 	private String name;
-	private GameMovable gameMovable;
-	public UnitSimple(String name, BehaviorSoldier behavior,GameMovable g) {
+	protected  SpriteManager spriteManager;
+	public static final int RENDERING_SIZE = 40;
+	protected boolean movable = true;
+	/* 
+	 * bridge pattern because we dont have multiple inherintence
+	 */
+	protected GameMovable gamemove;
+	
+	public UnitSimple(String name, BehaviorSoldier behavior, GameMovable game) {
 		this.behavior = behavior;
 		this.name = name;
-		this.gameMovable=g;
+		this.gamemove=game;
 	}
 
 	@Override
@@ -122,35 +130,48 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 			++result;
 		return result;
 	}
-	public void setPosition(Point p) {
-		this.gameMovable.setPosition(p);
+	@Override
+	public Rectangle getBoundingBox() {
+		return (new Rectangle(this.getPosition().x, this.getPosition().y, RENDERING_SIZE, RENDERING_SIZE));
 	}
 
-	public Point getPosition() {
-		return this.gameMovable.getPosition();
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
-	/**
-	 * (non-Javadoc)
-	 * @see gameframework.core.Movable#setSpeedVector(gameframework.moves_rules.SpeedVector)
-	 */
+
+	@Override
+	public Point getPosition() {
+		return this.gamemove.getPosition();
+	}
+	public void setPosition(Point p) {
+		this.gamemove.setPosition(p);
+	}
+
+	
+	
 	public void setSpeedVector(SpeedVector speedVector) {
-		this.gameMovable.setSpeedVector(speedVector);
+		this.gamemove.setSpeedVector(speedVector);
 	}
 
 	public SpeedVector getSpeedVector() {
-		return this.gameMovable.getSpeedVector();
+		return this.gamemove.getSpeedVector();
 	}
 	
 	public void setDriver(GameMovableDriver driver) {
-		this.gameMovable.setDriver(driver);
+		this.gamemove.setDriver(driver);
 	}
 
 	public GameMovableDriver getDriver() {
-		return this.gameMovable.getDriver();
+		return this.gamemove.getDriver();
 	}
 
 	public void oneStepMove() {
-		this.gameMovable.oneStepMove();
+		this.gamemove.oneStepMove();
 	}
+	
+	
 	
 }

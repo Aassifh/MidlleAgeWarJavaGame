@@ -4,10 +4,15 @@
  */
 package soldier.core;
 
-public interface AgeAbstractFactory {
-	Unit infantryUnit(String name);
+import java.awt.Canvas;
 
-	Unit riderUnit(String name);
+import gameframework.core.GameMovable;
+
+public interface AgeAbstractFactory {
+	//to much params going for the builder pattern ?
+	Unit infantryUnit(Canvas canvas ,String name,GameMovable g);
+
+	Unit riderUnit(Canvas canvas ,String name , GameMovable g );
 
 	Weapon attackWeapon();
 

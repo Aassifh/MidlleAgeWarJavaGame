@@ -4,6 +4,7 @@
  */
 package soldier.units;
 
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -16,7 +17,7 @@ import soldier.core.Weapon;
 
 public class UnitBikerMan extends UnitRider  {
 
-	public UnitBikerMan(String soldierName,GameMovable g) {
+	public UnitBikerMan(Canvas canvas,String soldierName,GameMovable g) {
 		super(soldierName, new BehaviorSoldierStd(20, 120),g);
 	}
 
@@ -30,22 +31,5 @@ public class UnitBikerMan extends UnitRider  {
 		super.addEquipment(w);
 	}
 
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
-	} 
 
 }

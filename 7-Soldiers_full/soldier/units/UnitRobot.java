@@ -4,19 +4,24 @@
  */
 package soldier.units;
 
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import gameframework.core.GameMovable;
+import gameframework.core.SpriteManagerDefaultImpl;
 import soldier.core.BreakingRuleException;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 
 public class UnitRobot extends UnitInfantry {
 
-	public UnitRobot(String soldierName, GameMovable g) {
+	public UnitRobot(Canvas canvas,String soldierName,GameMovable g) {
 		super(soldierName, new BehaviorSoldierHealthBased( 50, 100),g);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/elite.gif", canvas, RENDERING_SIZE, 3);
+		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
+				);
 	}
 
 	/**
@@ -28,23 +33,35 @@ public class UnitRobot extends UnitInfantry {
 		super.addEquipment(w);
 	}
 
+	
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		String spriteType = "";
+		Point tmp = getSpeedVector().getDirection();
+		// intégrer le mode combat après le test
+		//if (this.Soldier.alive()) {
+			if (tmp.getX() == 1)
+				spriteType += "right";
+			else if (tmp.getX() == -1)
+				spriteType += "left";
+			else if (tmp.getY() == 1)
+				spriteType += "down";
+			else if (tmp.getY() == -1)
+				spriteType += "up";
+			else {
+				spriteType = "right";
+				spriteManager.reset();
+				movable = false;
+
+			}
+		//}
+		spriteManager.setType(spriteType);
+		spriteManager.draw(g, getPosition());
+
 		
 	}
 
-	@Override
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
 
 }

@@ -4,9 +4,6 @@
  */
 package soldier.core;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -14,13 +11,9 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import gameframework.core.Drawable;
-import gameframework.core.GameEntity;
-import gameframework.core.Overlappable;
 import observer_util.ObservableAbstract;
 
-public class UnitGroup extends ObservableAbstract<Unit>
-                       implements Unit, Drawable, GameEntity, Overlappable {
+public class UnitGroup extends ObservableAbstract<Unit> implements Unit {
 
 	private Set<Unit> units;
 	private String name;
@@ -36,6 +29,7 @@ public class UnitGroup extends ObservableAbstract<Unit>
 					return o1.getName().compareTo(o2.getName());
 			}
 		});
+
 	}
 
 	@Override
@@ -144,27 +138,8 @@ public class UnitGroup extends ObservableAbstract<Unit>
 
 	@Override
 	public void removeEquipment(Weapon w) {
-		for (Iterator<Unit> it = subUnits(); it.hasNext(); it.next()
-				.removeEquipment(w)) {
+		for (Iterator<Unit> it = subUnits(); it.hasNext(); it.next().removeEquipment(w)) {
 		}
-	}
-
-	@Override
-	public Rectangle getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

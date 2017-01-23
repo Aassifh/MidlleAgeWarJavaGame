@@ -9,7 +9,7 @@ import java.util.Iterator;
 import observer_util.Observable;
 import gameframework.core.*;
 
-public interface Unit extends Observable<Unit> {
+public interface Unit extends Observable<Unit>  {
 	/**
 	 * Unit methods
 	 */

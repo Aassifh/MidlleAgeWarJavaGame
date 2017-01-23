@@ -8,7 +8,7 @@ import gameframework.core.GameMovable;
 
 public abstract class UnitRider extends UnitSimple {
 
-	public UnitRider(String name, BehaviorSoldier behavior, GameMovable g) {
+	public UnitRider(String name, BehaviorSoldier behavior,GameMovable g) {
 		super(name, behavior,g);
 	}
 
