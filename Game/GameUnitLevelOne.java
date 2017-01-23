@@ -63,15 +63,14 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 	public static final int SPRITE_SIZE = 15;
-	// depending on the game
+
 
 	protected void init() {
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
-		// definition d'un UnitMoveBlocker
+		
 		moveBlockerChecker.setMoveBlockerRules(new UnitMoveBlockers());
-		// definition d'un UnitOverlapRules
-		// some coords here 
+		
 		UnitOverlapRules overlapRules = new UnitOverlapRules(new Point(14*SPRITE_SIZE, 17*SPRITE_SIZE),life[0],score[0],endOfGame);
 		overlapProcessor.setOverlapRules(overlapRules);
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker, overlapProcessor);
@@ -82,7 +81,7 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		for (int i = 0; i < 31; i++) {
 			for (int j = 0; j < 28; j++) {
 				if (tab[i][j] == 0) {
-					universe.addGameEntity(new Grass(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
+					//universe.addGameEntity(new Grass(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
 				}
 				if (tab[i][j] == 1) {
 					universe.addGameEntity(new Wall(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
@@ -96,16 +95,13 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		
 		AgeAbstractFactory fact = new AgeFutureFactory();
 		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT", new UnitGameMovable());
-		
-		
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
-		
 		MoveStrategyKeyboard KeyStr = new MoveStrategyKeyboard();
 		UnitDriver.setStrategy(KeyStr);
 		UnitDriver.setmoveBlockerChecker(moveBlockerChecker);
 		canvas.addKeyListener(KeyStr);
 		unit.setDriver(UnitDriver);
-		unit.setPosition(new Point(5*SPRITE_SIZE,5*SPRITE_SIZE));
+		unit.setPosition(new Point(15*SPRITE_SIZE,15*SPRITE_SIZE));
 		universe.addGameEntity(unit);
 		
 	

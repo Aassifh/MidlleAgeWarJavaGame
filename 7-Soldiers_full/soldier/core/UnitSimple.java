@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Iterator;
 
+import Game.UnitGameMovable;
 import gameframework.core.Drawable;
 import gameframework.core.GameEntity;
 import gameframework.core.GameMovable;
@@ -24,18 +25,20 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 
 	private BehaviorSoldier behavior;
 	private String name;
-	protected  SpriteManager spriteManager;
-	public static final int RENDERING_SIZE = 40;
-	protected boolean movable = true;
+	protected SpriteManager spriteManager;
+	
+	
+	
 	/* 
 	 * bridge pattern because we dont have multiple inherintence
 	 */
-	protected GameMovable gamemove;
+	protected UnitGameMovable gamemove;
 	
-	public UnitSimple(String name, BehaviorSoldier behavior, GameMovable game) {
+	public UnitSimple(String name, BehaviorSoldier behavior, UnitGameMovable game) {
 		this.behavior = behavior;
 		this.name = name;
 		this.gamemove=game;
+		this.gamemove.setSpriteManager(spriteManager);
 	}
 
 	@Override
@@ -132,20 +135,17 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 	}
 	@Override
 	public Rectangle getBoundingBox() {
-		return (new Rectangle(this.getPosition().x, this.getPosition().y, RENDERING_SIZE, RENDERING_SIZE));
+		return this.gamemove.getBoundingBox();
 	}
 
-
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Point getPosition() {
+		
 		return this.gamemove.getPosition();
 	}
+
+	
 	public void setPosition(Point p) {
 		this.gamemove.setPosition(p);
 	}
@@ -170,6 +170,10 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 
 	public void oneStepMove() {
 		this.gamemove.oneStepMove();
+	}
+	public void oneStepMoveAddedBehavior() {
+		
+		this.gamemove.oneStepMoveAddedBehavior();
 	}
 	
 	

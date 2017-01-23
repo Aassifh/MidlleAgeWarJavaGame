@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import Game.UnitGameMovable;
 import gameframework.core.GameMovable;
 import gameframework.core.SpriteManagerDefaultImpl;
 import soldier.core.BreakingRuleException;
@@ -17,11 +18,12 @@ import soldier.core.Weapon;
 
 public class UnitRobot extends UnitInfantry {
 
-	public UnitRobot(Canvas canvas,String soldierName,GameMovable g) {
+	public UnitRobot(Canvas canvas,String soldierName,UnitGameMovable g) {
 		super(soldierName, new BehaviorSoldierHealthBased( 50, 100),g);
-		this.spriteManager = new SpriteManagerDefaultImpl("images/elite.gif", canvas, RENDERING_SIZE, 3);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, RENDERING_SIZE, 6);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
 				);
+		
 	}
 
 	/**
@@ -38,8 +40,7 @@ public class UnitRobot extends UnitInfantry {
 	public void draw(Graphics g) {
 		String spriteType = "";
 		Point tmp = getSpeedVector().getDirection();
-		// intégrer le mode combat après le test
-		//if (this.Soldier.alive()) {
+		
 			if (tmp.getX() == 1)
 				spriteType += "right";
 			else if (tmp.getX() == -1)
@@ -51,15 +52,19 @@ public class UnitRobot extends UnitInfantry {
 			else {
 				spriteType = "right";
 				spriteManager.reset();
-				movable = false;
+				this.gamemove.setMovable(false);
 
 			}
-		//}
+	
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
 
 		
 	}
+
+	
+
+	
 
 	
 	

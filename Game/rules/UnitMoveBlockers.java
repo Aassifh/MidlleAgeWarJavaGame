@@ -2,7 +2,7 @@ package Game.rules;
 
 import java.util.Vector;
 
-import Game.entities.UnitEntity;
+
 import gameframework.core.Movable;
 import gameframework.moves_rules.IllegalMoveException;
 import gameframework.moves_rules.MoveBlocker;
@@ -16,8 +16,8 @@ public class UnitMoveBlockers extends MoveBlockerRulesApplierDefaultImpl{
 	public UnitMoveBlockers() {
 		
 	}
-	public void moveBlockerRule(UnitEntity i , UnitEntity j) throws IllegalMoveException{
-		if (i.getSoldier().alive()&& j.getSoldier().alive())
+	public void moveBlockerRule(Unit i , Unit j) throws IllegalMoveException{
+		if (i.alive()&& j.alive())
 			throw new IllegalMoveException();
 	}
 	

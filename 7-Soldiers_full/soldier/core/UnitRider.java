@@ -4,11 +4,12 @@
  */
 package soldier.core;
 
-import gameframework.core.GameMovable;
+import Game.UnitGameMovable;
+
 
 public abstract class UnitRider extends UnitSimple {
 
-	public UnitRider(String name, BehaviorSoldier behavior,GameMovable g) {
+	public UnitRider(String name, BehaviorSoldier behavior,UnitGameMovable g) {
 		super(name, behavior,g);
 	}
 

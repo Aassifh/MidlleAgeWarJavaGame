@@ -38,4 +38,8 @@ public interface Unit extends Observable<Unit>  {
 	 * Visitor method
 	 */
 	public void accept(UnitVisitor v);
+	/**
+	 * Game Cst and methods 
+	 */
+	public static final int RENDERING_SIZE = 40;
 }
