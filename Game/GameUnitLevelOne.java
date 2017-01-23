@@ -94,7 +94,7 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		// soldats /ennemi etc..
 		
 		AgeAbstractFactory fact = new AgeFutureFactory();
-		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT", new UnitGameMovable());
+		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT");
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard KeyStr = new MoveStrategyKeyboard();
 		UnitDriver.setStrategy(KeyStr);

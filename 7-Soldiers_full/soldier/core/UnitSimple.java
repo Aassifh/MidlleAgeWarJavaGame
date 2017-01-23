@@ -10,7 +10,6 @@ import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Iterator;
 
-import Game.UnitGameMovable;
 import gameframework.core.Drawable;
 import gameframework.core.GameEntity;
 import gameframework.core.GameMovable;
@@ -19,26 +18,24 @@ import gameframework.core.Overlappable;
 import gameframework.core.SpriteManager;
 import gameframework.moves_rules.SpeedVector;
 import observer_util.ObservableAbstract;
+import observer_util.Observer;
 
-public abstract class UnitSimple extends ObservableAbstract<Unit>
+public abstract class UnitSimple extends GameMovable
                                  implements Unit,Drawable, GameEntity, Overlappable{
 
 	private BehaviorSoldier behavior;
 	private String name;
 	protected SpriteManager spriteManager;
+	protected boolean movable = true;
 	
 	
 	
-	/* 
-	 * bridge pattern because we dont have multiple inherintence
-	 */
-	protected UnitGameMovable gamemove;
 	
-	public UnitSimple(String name, BehaviorSoldier behavior, UnitGameMovable game) {
+	
+	public UnitSimple(String name, BehaviorSoldier behavior) {
 		this.behavior = behavior;
 		this.name = name;
-		this.gamemove=game;
-		this.gamemove.setSpriteManager(spriteManager);
+		
 	}
 
 	@Override
@@ -135,45 +132,31 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 	}
 	@Override
 	public Rectangle getBoundingBox() {
-		return this.gamemove.getBoundingBox();
+		return (new Rectangle(this.getPosition().x, this.getPosition().y, Unit.RENDERING_SIZE, Unit.RENDERING_SIZE));
 	}
-
 
 	@Override
-	public Point getPosition() {
-		
-		return this.gamemove.getPosition();
-	}
-
-	
-	public void setPosition(Point p) {
-		this.gamemove.setPosition(p);
-	}
-
-	
-	
-	public void setSpeedVector(SpeedVector speedVector) {
-		this.gamemove.setSpeedVector(speedVector);
-	}
-
-	public SpeedVector getSpeedVector() {
-		return this.gamemove.getSpeedVector();
-	}
-	
-	public void setDriver(GameMovableDriver driver) {
-		this.gamemove.setDriver(driver);
-	}
-
-	public GameMovableDriver getDriver() {
-		return this.gamemove.getDriver();
-	}
-
-	public void oneStepMove() {
-		this.gamemove.oneStepMove();
-	}
 	public void oneStepMoveAddedBehavior() {
+		if(movable)
+			this.spriteManager.increment();
 		
-		this.gamemove.oneStepMoveAddedBehavior();
+	}
+	@Override
+	public void addObserver(Observer<Unit> ob) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver(Observer<Unit> ob) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObservers(Unit s) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

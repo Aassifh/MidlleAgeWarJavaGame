@@ -9,21 +9,24 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import Game.UnitGameMovable;
+
 import gameframework.core.GameMovable;
 import gameframework.core.SpriteManagerDefaultImpl;
+import observer_util.Observer;
 import soldier.core.BreakingRuleException;
+import soldier.core.Unit;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 
 public class UnitRobot extends UnitInfantry {
 
-	public UnitRobot(Canvas canvas,String soldierName,UnitGameMovable g) {
-		super(soldierName, new BehaviorSoldierHealthBased( 50, 100),g);
+	public UnitRobot(Canvas canvas, String soldierName) {
+		super(soldierName, new BehaviorSoldierHealthBased(50, 100));
+		
 		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, RENDERING_SIZE, 6);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
-				);
-		
+		);
+
 	}
 
 	/**
@@ -31,42 +34,36 @@ public class UnitRobot extends UnitInfantry {
 	 */
 	@Override
 	public void addEquipment(Weapon w) {
-		if (nbWeapons()>3) throw new BreakingRuleException();
+		if (nbWeapons() > 3)
+			throw new BreakingRuleException();
 		super.addEquipment(w);
 	}
 
-	
 	@Override
 	public void draw(Graphics g) {
 		String spriteType = "";
 		Point tmp = getSpeedVector().getDirection();
-		
-			if (tmp.getX() == 1)
-				spriteType += "right";
-			else if (tmp.getX() == -1)
-				spriteType += "left";
-			else if (tmp.getY() == 1)
-				spriteType += "down";
-			else if (tmp.getY() == -1)
-				spriteType += "up";
-			else {
-				spriteType = "right";
-				spriteManager.reset();
-				this.gamemove.setMovable(false);
 
-			}
-	
+		if (tmp.getX() == 1)
+			spriteType += "right";
+		else if (tmp.getX() == -1)
+			spriteType += "left";
+		else if (tmp.getY() == 1)
+			spriteType += "down";
+		else if (tmp.getY() == -1)
+			spriteType += "up";
+		else {
+			spriteType = "right";
+			spriteManager.reset();
+			this.movable=false;
+
+		}
+
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
 
-		
 	}
 
-	
-
-	
-
-	
 	
 
 }

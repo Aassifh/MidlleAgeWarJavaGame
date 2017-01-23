@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import Game.UnitGameMovable;
+
 import gameframework.core.GameMovable;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
@@ -18,8 +18,8 @@ import soldier.core.Weapon;
 
 public class UnitBikerMan extends UnitRider  {
 
-	public UnitBikerMan(Canvas canvas,String soldierName,UnitGameMovable g) {
-		super(soldierName, new BehaviorSoldierStd(20, 120),g);
+	public UnitBikerMan(Canvas canvas,String soldierName) {
+		super(soldierName, new BehaviorSoldierStd(20, 120));
 	}
 
 	/**
@@ -37,6 +37,8 @@ public class UnitBikerMan extends UnitRider  {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	
 
 

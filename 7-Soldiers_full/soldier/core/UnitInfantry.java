@@ -4,13 +4,13 @@
  */
 package soldier.core;
 
-import Game.UnitGameMovable;
+
 
 
 public abstract class UnitInfantry extends UnitSimple {
 
-	public UnitInfantry(String name, BehaviorSoldier behavior,UnitGameMovable g) {
-		super(name, behavior,g);
+	public UnitInfantry(String name, BehaviorSoldier behavior) {
+		super(name, behavior);
 	}
 
 	@Override

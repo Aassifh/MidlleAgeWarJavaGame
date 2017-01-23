@@ -6,7 +6,7 @@ package soldier.ages;
 
 import java.awt.Canvas;
 
-import Game.UnitGameMovable;
+
 
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Unit;
@@ -19,13 +19,13 @@ import soldier.weapon.WeaponSword;
 public class AgeMiddleFactory implements AgeAbstractFactory {
 
 	@Override
-	public Unit infantryUnit(Canvas canvas,String name, UnitGameMovable g) {
-		return new UnitCenturion(canvas,name,g);
+	public Unit infantryUnit(Canvas canvas,String name) {
+		return new UnitCenturion(canvas,name);
 	}
 
 	@Override
-	public Unit riderUnit(Canvas canvas,String name,UnitGameMovable g) {
-		return new UnitHorseMan(canvas,name,g);
+	public Unit riderUnit(Canvas canvas,String name) {
+		return new UnitHorseMan(canvas,name);
 	}
 
 	@Override
