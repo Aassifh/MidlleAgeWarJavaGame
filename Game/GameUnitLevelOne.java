@@ -105,6 +105,7 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		// soldats /ennemi etc..
 		
 		AgeAbstractFactory fact = new AgeFutureFactory();
+		
 		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT");
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard KeyStr = new MoveStrategyKeyboard();
@@ -115,9 +116,11 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl {
 		unit.setPosition(new Point(13*SPRITE_SIZE,27*SPRITE_SIZE));
 		universe.addGameEntity(unit);
 		
+		
+
 		// Ajout des Ennemi 
 		AgeAbstractFactory fact2 = new AgeMiddleFactory();
-		
+
 		for (int i = 0; i < 4; i++) {
 			UnitCenturion unit3=(UnitCenturion) fact2.infantryUnit(canvas, "Centurion");
 			Ennemi.addElement(unit3);

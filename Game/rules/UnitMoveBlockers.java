@@ -13,6 +13,11 @@ import soldier.core.Unit;
 
 public class UnitMoveBlockers extends MoveBlockerRulesApplierDefaultImpl{
 
+	// definir les regles de blockage phase conception 
+	/* idéé:
+	 * 
+	 */
+	
 	public UnitMoveBlockers() {
 		
 	}

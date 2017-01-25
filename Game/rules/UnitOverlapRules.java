@@ -1,5 +1,7 @@
 package Game.rules;
 
+import java.awt.Point;
+import java.util.Vector;
 
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverse;
@@ -23,7 +25,9 @@ import java.util.Vector;
 import Game.entities.power;
 import Game.entities.tresor;
 
-
+import gameframework.moves_rules.Overlap;
+import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
+import soldier.core.UnitSimple;
 
 public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
@@ -39,6 +43,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
+	private int firstAidKits=0;
 
 	public UnitOverlapRules(Point pacPos, Point gPos,
 			ObservableValue<Integer> life, ObservableValue<Integer> score,
@@ -66,6 +71,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void setEnnemi(Vector<UnitCenturion> ennemi) {
 		Ennemi = ennemi;
 	}
+	
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlappables) {
 		Death = true;
@@ -128,6 +134,24 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		}
 
 	}
+	
+//	public void setFirstAidKits(int firstAidKits){
+//		this.firstAidKits=firstAidKits;
+//		
+//	}
+//	public void addEnemy(UnitSimple u){
+//		// composite pattern
+//		//faire un Unit group 
+//	}
+//	
+//	@Override
+//	public void applyOverlapRules(Vector<Overlap> overlappables){
+//		//gerer la mort du soldats 
+//		super.applyOverlapRules(overlappables);
+//	}
+//	public void overlapRule(UnitSimple u ,UnitSimple i){
+//		
+//	}
 
 }
 
