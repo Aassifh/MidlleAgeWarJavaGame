@@ -3,6 +3,8 @@ package Game.rules;
 import java.awt.Point;
 import java.util.Vector;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverse;
 import gameframework.core.ObservableValue;
@@ -14,6 +16,7 @@ import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
+import soldier.core.UnitInfantry;
 import soldier.core.UnitSimple;
 import soldier.units.UnitCenturion;
 import soldier.units.UnitRobot;
@@ -43,7 +46,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
-	private int firstAidKits=0;
+	
 
 	public UnitOverlapRules(Point pacPos, Point gPos,
 			ObservableValue<Integer> life, ObservableValue<Integer> score,
@@ -103,7 +106,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 //		}
 //	}
 	
-	public void overlapRule(UnitSimple p, power pw) {
+	public void overlapRule(UnitRobot p, power pw) {
 		
 		universe.removeGameEntity(pw);
 		//p.setInvulnerable(INVULNERABLE_DURATION);
@@ -112,15 +115,31 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		//}
 	}
 
-	public void overlapRule(UnitCenturion g, tresor tresor) {
+	public void overlapRule(UnitCenturion g, power pw) {
+		
+		universe.removeGameEntity(pw);
+		AgeAbstractFactory fact3 = new AgeMiddleFactory();
+		
+		for (int i = 0; i < 2; i++) {
+			UnitCenturion unit4=(UnitCenturion) fact3.infantryUnit(canvas, "Centurion");
+			Ennemi.addElement(unit4);
+			GameMovableDriverDefaultImpl UnitDriver4= new GameMovableDriverDefaultImpl();
+			MoveStrategyRandom key = new MoveStrategyRandom();
+			UnitDriver4.setStrategy(key);
+			UnitDriver4.setmoveBlockerChecker(moveBlockerChecker);
+			unit4.setDriver(UnitDriver4);
+			unit4.setPosition(new Point((14+i)*16,15*16));
+			universe.addGameEntity(unit4);
+		}
+		
 	}
 
 
 	public void overlapRule(UnitRobot p, tresor tresor) {
 		
 		universe.removeGameEntity(tresor);
-		
 		AgeAbstractFactory fact2 = new AgeFutureFactory();
+		
 		for (int i = 0; i < 2; i++) {
 			
 			UnitRobot unit3=(UnitRobot) fact2.infantryUnit(canvas, "myArmy");

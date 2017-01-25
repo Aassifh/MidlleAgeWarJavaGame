@@ -32,6 +32,10 @@ public class MoveStrategyKeyboard extends KeyAdapter implements MoveStrategy {
 		case KeyEvent.VK_DOWN:
 			speedVector.setDirection(new Point(0, 1));
 			break;
+		case KeyEvent.VK_ENTER:
+			speedVector.setDirection(new Point(0, 0));
+			break;
+			
 		}
 	}
 }
