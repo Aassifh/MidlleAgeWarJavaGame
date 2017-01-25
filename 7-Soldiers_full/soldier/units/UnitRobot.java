@@ -20,10 +20,11 @@ import soldier.core.Weapon;
 
 public class UnitRobot extends UnitInfantry {
 
+
 	public UnitRobot(Canvas canvas, String soldierName) {
 		super(soldierName, new BehaviorSoldierHealthBased(50, 100));
 		
-		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, RENDERING_SIZE, 6);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, 40, 6);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
 		);
 

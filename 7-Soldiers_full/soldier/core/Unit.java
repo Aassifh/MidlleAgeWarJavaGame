@@ -41,5 +41,5 @@ public interface Unit extends Observable<Unit>  {
 	/**
 	 * Game Cst and methods 
 	 */
-	public static final int RENDERING_SIZE = 40;
+	public static final int RENDERING_SIZE = 50;
 }

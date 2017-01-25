@@ -14,7 +14,7 @@ public class Wall implements  Drawable,MoveBlocker,GameEntity {
 	int x,y ; 
 	public static final int RENDERING_SIZE=20;
 	 public Wall(Canvas canvas, int x ,int y) {
-		 image=new DrawableImage("images/Wall.gif", canvas);
+		 image=new DrawableImage("images/wall.gif", canvas);
 		 this.x=x;
 		 this.y=y;
 	}

@@ -18,11 +18,13 @@ import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 
 public class UnitCenturion extends UnitInfantry {
-
+	
+	boolean alive;
+	
 	public UnitCenturion(Canvas canvas,String soldierName){
 		super(soldierName, new BehaviorSoldierStd(15, 100));
 		
-		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, RENDERING_SIZE, 6);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/soldat6.png", canvas, 30, 4);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
 		);
 	}
@@ -60,6 +62,12 @@ public class UnitCenturion extends UnitInfantry {
 
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
+	}
+
+	public void setAlive(boolean b) {
+		// TODO Auto-generated method stub
+		this.alive = b;
+		
 	}
 	
 
