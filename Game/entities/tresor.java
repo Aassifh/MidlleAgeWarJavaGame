@@ -14,10 +14,10 @@ import java.awt.Rectangle;
 public class tresor implements Drawable, GameEntity, Overlappable {
 	protected static DrawableImage image = null;
 	protected Point position;
-	public static final int RENDERING_SIZE = 16;
+	public static final int RENDERING_SIZE = 50;
 
 	public tresor(Canvas defaultCanvas, Point pos) {
-		image = new DrawableImage("images/boule_tresor.gif", defaultCanvas);
+		image = new DrawableImage("images/Gun.png", defaultCanvas);
 		position = pos;
 	}
 
