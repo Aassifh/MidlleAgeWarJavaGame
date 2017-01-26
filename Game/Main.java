@@ -11,7 +11,7 @@ public class Main {
 		
 		
 		GameDefaultImpl g = new GameDefaultImpl();
-		ArrayList<GameLevel> levels = new ArrayList<>();
+		ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
 		levels.add(new GameUnitLevelOne(g));
 		
 		g.setLevels(levels);

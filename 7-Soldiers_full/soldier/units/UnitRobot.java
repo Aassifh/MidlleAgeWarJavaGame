@@ -22,9 +22,9 @@ public class UnitRobot extends UnitInfantry {
 	public UnitRobot(Canvas canvas, String soldierName) {
 		super(soldierName, new BehaviorSoldierHealthBased(50, 100));
 
-		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper4.gif", canvas, 40, 6);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper5.gif", canvas, 40, 6);
 		this.spriteManager.setTypes("down", "left", "right", "up", "static", 
-				"strike-up","strike-down","strike-left","strike-right" ,
+				"strike-left","strike-right","strike-up","strike-down" ,
 				"dead"// Moves
 		);
 
@@ -53,13 +53,13 @@ public class UnitRobot extends UnitInfantry {
 				spriteType += "down";
 			else if (tmp.getY() == -1)
 				spriteType += "up";
-			else if (tmp.getX() == 2)
-				spriteType += "strike-up";
-			else if (tmp.getX() == 3)
+			else if (tmp.getY() == 2)
 				spriteType += "strike-down";
-			else if (tmp.getX() == 4)
+			else if (tmp.getY() == -2)
+				spriteType += "strike-up";
+			else if (tmp.getX() == -2)
 				spriteType += "strike-left";
-			else if (tmp.getX() == 5)
+			else if (tmp.getX() == 2)
 				spriteType += "strike-right";
 			else {
 				spriteType = "static";
@@ -69,7 +69,9 @@ public class UnitRobot extends UnitInfantry {
 			}
 		}
 		if (!alive()) {
-			spriteType += "dead";
+			spriteType = "dead";
+			spriteManager.reset();
+			this.movable = false;
 		}
 
 		spriteManager.setType(spriteType);

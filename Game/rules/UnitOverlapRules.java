@@ -12,6 +12,7 @@ import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
+import soldier.core.BehaviorSoldier;
 import soldier.units.UnitCenturion;
 import soldier.units.UnitRobot;
 import java.awt.Canvas;
@@ -31,6 +32,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
+	//private BehaviorSoldier behavior;
 	
 
 	public UnitOverlapRules(Point pacPos, Point gPos,
