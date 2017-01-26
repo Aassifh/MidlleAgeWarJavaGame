@@ -122,10 +122,11 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 
 		// Ajout des Ennemi 
 			fact = AgeMiddleFactory.getInstance();
+			UnitGroup army= new UnitGroup("army");
 
 		for (int i = 0; i < ENNEMI; i++) {
 			UnitCenturion unit3=(UnitCenturion) fact.infantryUnit(canvas, "Centurion");
-			Ennemi.addElement(unit3);
+			army.addUnit(unit3);
 			GameMovableDriverDefaultImpl UnitDriver3= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();
 			UnitDriver3.setStrategy(key);

@@ -157,6 +157,9 @@ public class UnitGroup extends Unit {
 
 
 	}
+	public int getNbUnit(){
+		return this.units.size();
+	}
 
 	
 

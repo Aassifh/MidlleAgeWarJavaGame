@@ -19,7 +19,7 @@ import soldier.core.Weapon;
 
 public class UnitCenturion extends UnitInfantry {
 	
-	boolean alive;
+	
 	protected int weakTimer = 0;
 	protected int maxWeakTimer = 0;
 	
@@ -68,18 +68,13 @@ public class UnitCenturion extends UnitInfantry {
 	
 	
 
-	public void setAlive(boolean b) {
-		// TODO Auto-generated method stub
-		this.alive = b;
-		
-	}
+	
 
 	public boolean isWeak() {
 		return weakTimer > 0;
 	}
 	
 	public void setWeak(int timer) {
-		// TODO Auto-generated method stub
 		maxWeakTimer = weakTimer = timer;
 	}
 	

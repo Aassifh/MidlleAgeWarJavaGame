@@ -13,6 +13,8 @@ import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
 import soldier.core.BehaviorSoldier;
+import soldier.core.Unit;
+import soldier.core.UnitGroup;
 import soldier.units.UnitCenturion;
 import soldier.units.UnitRobot;
 import java.awt.Canvas;
@@ -24,7 +26,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
 	protected Canvas canvas;
 	protected MoveBlockerChecker moveBlockerChecker;
-	protected Vector<UnitCenturion> Ennemi = new Vector<UnitCenturion>();
+	protected UnitGroup army;
 	static final int Power_DURATION = 20;
 	protected Point UnitStartPos;
 	protected Point EnnemiStartPos;
@@ -60,8 +62,8 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		this.moveBlockerChecker = moveBlockerChecker;
 	}
 	
-	public void setEnnemi(Vector<UnitCenturion> ennemi) {
-		Ennemi = ennemi;
+	public void setEnnemi(UnitGroup ennemi) {
+		army = ennemi;
 	}
 	
 	@Override
@@ -70,28 +72,28 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		super.applyOverlapRules(overlappables);
 	}
 
-	public void overlapRule(UnitRobot p, UnitCenturion g) {
-
+	public void overlapRule(Unit p, Unit g) {
+		
 		universe.removeGameEntity(g);
 		score.setValue(score.getValue()+1);
-		Ennemi.remove(Ennemi.size()-1);
+		army.removeUnit(p);;
 		isEnd();
 
 	}
 	
 	private void isEnd() {
 		// TODO Auto-generated method stub
-		if(Ennemi.size()==0)
+		if(army.getNbUnit()==0)
 		endOfGame.setValue(true);
 	}
 
-	public void overlapRule(UnitRobot p, power pw) {
+	public void overlapRule(Unit p, power pw) {
 		
 		universe.removeGameEntity(pw);
 		//this.behavior.getValue().heal();
-		
-		for (UnitCenturion ennemi : Ennemi) {
-			ennemi.setWeak(Power_DURATION);
+		// typage pas juste 
+		for (Unit ennemi : Ennemi) {
+			((UnitCenturion)ennemi).setWeak(Power_DURATION);
 		}
 	}
 
@@ -101,8 +103,8 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		AgeAbstractFactory fact3 = AgeMiddleFactory.getInstance();
 		
 		for (int i = 0; i < 2; i++) {
-			UnitCenturion unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
-			Ennemi.addElement(unit4);
+			Unit unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
+			E.addElement(unit4);
 			GameMovableDriverDefaultImpl UnitDriver4= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();
 			UnitDriver4.setStrategy(key);
