@@ -16,7 +16,17 @@ import soldier.units.UnitHorseMan;
 import soldier.weapon.WeaponShield;
 import soldier.weapon.WeaponSword;
 
+
 public class AgeMiddleFactory implements AgeAbstractFactory {
+	private static AgeAbstractFactory Instance;
+	private  AgeMiddleFactory() {
+		// TODO Auto-generated constructor stub
+	}
+	public synchronized static AgeAbstractFactory getInstance(){
+		if (Instance==null)
+			return new AgeMiddleFactory();
+		return Instance;
+	}
 
 	@Override
 	public Unit infantryUnit(Canvas canvas,String name) {

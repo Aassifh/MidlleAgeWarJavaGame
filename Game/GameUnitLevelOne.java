@@ -106,7 +106,7 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 		// après definition des trucs qui bougent
 		// soldats /ennemi etc..
 		
-		AgeAbstractFactory fact = new AgeFutureFactory();
+		AgeAbstractFactory fact = AgeFutureFactory.getInstance();
 		
 		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT");
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
@@ -121,10 +121,10 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 		
 
 		// Ajout des Ennemi 
-		AgeAbstractFactory fact2 = new AgeMiddleFactory();
+			fact = AgeMiddleFactory.getInstance();
 
-		for (int i = 0; i < 4; i++) {
-			UnitCenturion unit3=(UnitCenturion) fact2.infantryUnit(canvas, "Centurion");
+		for (int i = 0; i < ENNEMI; i++) {
+			UnitCenturion unit3=(UnitCenturion) fact.infantryUnit(canvas, "Centurion");
 			Ennemi.addElement(unit3);
 			GameMovableDriverDefaultImpl UnitDriver3= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();

@@ -7,7 +7,7 @@ package soldier.core;
 import java.awt.Canvas;
 
 
-import gameframework.core.GameMovable;
+
 
 public interface AgeAbstractFactory {
 	//to much params going for the builder pattern ?
@@ -18,4 +18,5 @@ public interface AgeAbstractFactory {
 	Weapon attackWeapon();
 
 	Weapon defenseWeapon();
+	 
 }

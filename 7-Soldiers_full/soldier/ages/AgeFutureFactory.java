@@ -7,7 +7,7 @@ package soldier.ages;
 import java.awt.Canvas;
 
 
-import gameframework.core.GameMovable;
+
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Unit;
 import soldier.core.Weapon;
@@ -17,7 +17,15 @@ import soldier.weapon.WeaponGun;
 import soldier.weapon.WeaponShield;
 
 public class AgeFutureFactory implements AgeAbstractFactory {
-
+	private static AgeAbstractFactory Instance;
+	private  AgeFutureFactory() {
+		// TODO Auto-generated constructor stub
+	}
+	public synchronized static AgeAbstractFactory getInstance(){
+		if (Instance==null)
+			return new AgeFutureFactory();
+		return Instance;
+	}
 	@Override
 	public Unit infantryUnit(Canvas canvas,String name) {
 		return new UnitRobot(canvas,name);
