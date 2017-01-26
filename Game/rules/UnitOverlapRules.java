@@ -32,9 +32,10 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
-	//private BehaviorSoldier behavior;
+	//private final ObservableValue<BehaviorSoldier> behavior;
 	
 
+	
 	public UnitOverlapRules(Point pacPos, Point gPos,
 			ObservableValue<Integer> life, ObservableValue<Integer> score,
 			ObservableValue<Boolean> endOfGame) {
@@ -43,6 +44,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		this.life = life;
 		this.score = score;
 		this.endOfGame = endOfGame;
+		
 	}
 
 	public void setCanvas(Canvas canvas) {
@@ -86,6 +88,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void overlapRule(UnitRobot p, power pw) {
 		
 		universe.removeGameEntity(pw);
+		//this.behavior.getValue().heal();
 		
 		for (UnitCenturion ennemi : Ennemi) {
 			ennemi.setWeak(Power_DURATION);

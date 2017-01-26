@@ -4,6 +4,8 @@
  */
 package soldier.core;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -11,9 +13,14 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import gameframework.core.Drawable;
+import gameframework.core.GameEntity;
+import gameframework.core.GameMovable;
+import gameframework.core.Overlappable;
 import observer_util.ObservableAbstract;
+import observer_util.Observer;
 
-public class UnitGroup extends ObservableAbstract<Unit> implements Unit {
+public class UnitGroup extends Unit {
 
 	private Set<Unit> units;
 	private String name;
@@ -59,7 +66,7 @@ public class UnitGroup extends ObservableAbstract<Unit> implements Unit {
 	public boolean alive() {
 		return getHealthPoints() > 0.f;
 	}
-
+	
 	@Override
 	public void heal() {
 		for (Unit u : units)
@@ -141,5 +148,16 @@ public class UnitGroup extends ObservableAbstract<Unit> implements Unit {
 		for (Iterator<Unit> it = subUnits(); it.hasNext(); it.next().removeEquipment(w)) {
 		}
 	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	
+
+
+	}
+
+	
 
 }

@@ -70,7 +70,6 @@ public class UnitRobot extends UnitInfantry {
 		}
 		if (!alive()) {
 			spriteType = "dead";
-			spriteManager.reset();
 			this.movable = false;
 		}
 

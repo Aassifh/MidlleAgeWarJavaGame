@@ -20,22 +20,15 @@ import gameframework.moves_rules.SpeedVector;
 import observer_util.ObservableAbstract;
 import observer_util.Observer;
 
-public abstract class UnitSimple extends GameMovable
-                                 implements Unit,Drawable, GameEntity, Overlappable{
+public abstract class UnitSimple extends Unit {
 
 	private BehaviorSoldier behavior;
 	private String name;
-	protected SpriteManager spriteManager;
-	protected boolean movable = true;
-	
-	
-	
-	
-	
+
 	public UnitSimple(String name, BehaviorSoldier behavior) {
 		this.behavior = behavior;
 		this.name = name;
-		
+
 	}
 
 	@Override
@@ -80,14 +73,12 @@ public abstract class UnitSimple extends GameMovable
 	public void removeEquipment(Weapon w) {
 		BehaviorSoldier current = behavior;
 		BehaviorSoldier previous = behavior;
-		while (current instanceof BehaviorExtension
-				&& ((BehaviorExtension) current).getOwner() != w) {
+		while (current instanceof BehaviorExtension && ((BehaviorExtension) current).getOwner() != w) {
 			previous = current;
 			current = ((BehaviorExtension) current).parent();
 		}
 		if (((BehaviorExtension) current).getOwner() == w) {
-			((BehaviorExtension) previous)
-					.reparent(((BehaviorExtension) previous).parent());
+			((BehaviorExtension) previous).reparent(((BehaviorExtension) previous).parent());
 		}
 	}
 
@@ -130,35 +121,5 @@ public abstract class UnitSimple extends GameMovable
 			++result;
 		return result;
 	}
-	@Override
-	public Rectangle getBoundingBox() {
-		return (new Rectangle(this.getPosition().x, this.getPosition().y, Unit.RENDERING_SIZE, Unit.RENDERING_SIZE));
-	}
 
-	@Override
-	public void oneStepMoveAddedBehavior() {
-		if(movable)
-			this.spriteManager.increment();
-		
-	}
-	@Override
-	public void addObserver(Observer<Unit> ob) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeObserver(Observer<Unit> ob) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObservers(Unit s) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
 }
