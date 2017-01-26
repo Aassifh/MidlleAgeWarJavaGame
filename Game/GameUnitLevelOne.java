@@ -71,7 +71,6 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 	
 	public static final int SPRITE_SIZE = 15;
 	public static final int ENNEMI = 5;
-	Vector<UnitCenturion> Ennemi = new Vector<UnitCenturion>();
 	
 	protected void init() {
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
@@ -107,8 +106,9 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 		// soldats /ennemi etc..
 		
 		AgeAbstractFactory fact = AgeFutureFactory.getInstance();
-		
-		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "ROBOT");
+		UnitGroup Myarmy = new UnitGroup("MyArmy");
+		UnitRobot unit=(UnitRobot) fact.infantryUnit(canvas, "MyROBOT");
+		Myarmy.addUnit(unit);
 		GameMovableDriverDefaultImpl UnitDriver= new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard KeyStr = new MoveStrategyKeyboard();
 		UnitDriver.setStrategy(KeyStr);
@@ -136,7 +136,8 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 			universe.addGameEntity(unit3);
 		}
 		
-		overlapRules.setEnnemi(Ennemi);
+		overlapRules.setEnnemi(army);
+		overlapRules.setMyArmy(Myarmy);
 		
 		PowerRule pr = new PowerRule(universe, canvas, tab);
 		pr.start();

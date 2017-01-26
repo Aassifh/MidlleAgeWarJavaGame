@@ -5,20 +5,11 @@
 package soldier.core;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-
-import gameframework.core.Drawable;
-import gameframework.core.GameEntity;
-import gameframework.core.GameMovable;
-import gameframework.core.Overlappable;
-import observer_util.ObservableAbstract;
-import observer_util.Observer;
 
 public class UnitGroup extends Unit {
 
@@ -152,15 +143,10 @@ public class UnitGroup extends Unit {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		
-	
-
-
 	}
+
 	public int getNbUnit(){
 		return this.units.size();
 	}
-
-	
 
 }

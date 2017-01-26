@@ -33,7 +33,7 @@ public class PowerRule extends Thread{
 				pw = new power(canvas, new Point(j * 16, i * 16));
 				if (tab[i][j] == 5)
 				universe.addGameEntity(pw);
-				sleep(4000);
+				sleep(6000);
 				universe.removeGameEntity(pw);
 				
 			} catch (InterruptedException e) {

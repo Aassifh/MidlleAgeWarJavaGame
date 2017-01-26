@@ -1,6 +1,7 @@
 package Game.rules;
 
 import java.awt.Point;
+import java.util.Random;
 import java.util.Vector;
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverse;
@@ -27,10 +28,13 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected Canvas canvas;
 	protected MoveBlockerChecker moveBlockerChecker;
 	protected UnitGroup army;
+	protected UnitGroup MyArmy;
 	static final int Power_DURATION = 20;
 	protected Point UnitStartPos;
 	protected Point EnnemiStartPos;
 	protected boolean Death;
+	Random rm = new Random();
+	int tour;
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
@@ -66,17 +70,38 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		army = ennemi;
 	}
 	
+	public void setMyArmy(UnitGroup Myarmy) {
+		MyArmy = Myarmy;
+	}
+	
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlappables) {
 		Death = true;
 		super.applyOverlapRules(overlappables);
 	}
 
-	public void overlapRule(Unit p, Unit g) {
+	public void overlapRule(UnitRobot p, UnitCenturion g) {
 		
-		universe.removeGameEntity(g);
+	
+			tour= rm.nextInt(4);
+			System.out.println(tour);
+			if(tour >= 2){
+				g.parry(p.strike());
+			}else{
+				p.parry(g.strike());
+			}
+		
+			tour=0;
+			
+		if(!g.alive()){
+			universe.removeGameEntity(g);
+			army.removeUnit(g);
+		}
+		if(!p.alive()){
+			universe.removeGameEntity(p);
+		}
+		
 		score.setValue(score.getValue()+1);
-		army.removeUnit(p);;
 		isEnd();
 
 	}
@@ -87,14 +112,17 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		endOfGame.setValue(true);
 	}
 
-	public void overlapRule(Unit p, power pw) {
+	public void overlapRule(UnitRobot p, power pw) {
 		
 		universe.removeGameEntity(pw);
+		MyArmy.heal();
+		
+		System.out.println(MyArmy.getHealthPoints());
 		//this.behavior.getValue().heal();
 		// typage pas juste 
-		for (Unit ennemi : Ennemi) {
-			((UnitCenturion)ennemi).setWeak(Power_DURATION);
-		}
+//		for (Unit ennemi : Ennemi) {
+//			((UnitCenturion)ennemi).setWeak(Power_DURATION);
+//		}
 	}
 
 	public void overlapRule(UnitCenturion g, power pw) {
@@ -104,7 +132,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		
 		for (int i = 0; i < 2; i++) {
 			Unit unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
-			E.addElement(unit4);
+			this.army.addUnit(unit4);
 			GameMovableDriverDefaultImpl UnitDriver4= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();
 			UnitDriver4.setStrategy(key);
@@ -125,6 +153,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		for (int i = 0; i < 2; i++) {
 			
 			UnitRobot unit3=(UnitRobot) fact2.infantryUnit(canvas, "myArmy");
+			this.MyArmy.addUnit(unit3);
 			GameMovableDriverDefaultImpl UnitDriver3= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();
 			UnitDriver3.setStrategy(key);

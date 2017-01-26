@@ -24,7 +24,7 @@ public class UnitCenturion extends UnitInfantry {
 	protected int maxWeakTimer = 0;
 	
 	public UnitCenturion(Canvas canvas,String soldierName){
-		super(soldierName, new BehaviorSoldierStd(15, 100));
+		super(soldierName, new BehaviorSoldierStd(50, 100));
 		
 		this.spriteManager = new SpriteManagerDefaultImpl("images/soldat6.png", canvas, 30, 4);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
