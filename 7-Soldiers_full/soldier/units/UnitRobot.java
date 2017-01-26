@@ -64,7 +64,4 @@ public class UnitRobot extends UnitInfantry {
 		spriteManager.draw(g, getPosition());
 
 	}
-
-	
-
 }

@@ -20,6 +20,8 @@ import soldier.core.Weapon;
 public class UnitCenturion extends UnitInfantry {
 	
 	boolean alive;
+	protected int weakTimer = 0;
+	protected int maxWeakTimer = 0;
 	
 	public UnitCenturion(Canvas canvas,String soldierName){
 		super(soldierName, new BehaviorSoldierStd(15, 100));
@@ -63,14 +65,22 @@ public class UnitCenturion extends UnitInfantry {
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
 	}
+	
+	
 
 	public void setAlive(boolean b) {
 		// TODO Auto-generated method stub
 		this.alive = b;
 		
 	}
-	
 
+	public boolean isWeak() {
+		return weakTimer > 0;
+	}
 	
-
+	public void setWeak(int timer) {
+		// TODO Auto-generated method stub
+		maxWeakTimer = weakTimer = timer;
+	}
+	
 }

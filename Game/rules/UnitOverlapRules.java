@@ -2,44 +2,29 @@ package Game.rules;
 
 import java.awt.Point;
 import java.util.Vector;
-
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverse;
 import gameframework.core.ObservableValue;
 import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveStrategyRandom;
-import gameframework.moves_rules.MoveStrategyStraightLine;
 import gameframework.moves_rules.Overlap;
 import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
-import soldier.core.UnitInfantry;
-import soldier.core.UnitSimple;
 import soldier.units.UnitCenturion;
 import soldier.units.UnitRobot;
-
 import java.awt.Canvas;
-import java.awt.Point;
-import java.util.Vector;
-
 import Game.entities.power;
 import Game.entities.tresor;
 
-import gameframework.moves_rules.Overlap;
-import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
-import soldier.core.UnitSimple;
-
 public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
+	
 	protected GameUniverse universe;
 	protected Canvas canvas;
 	protected MoveBlockerChecker moveBlockerChecker;
-	
 	protected Vector<UnitCenturion> Ennemi = new Vector<UnitCenturion>();
-	
-	static final int Power_DURATION = 60;
+	static final int Power_DURATION = 20;
 	protected Point UnitStartPos;
 	protected Point EnnemiStartPos;
 	protected boolean Death;
@@ -81,7 +66,12 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		super.applyOverlapRules(overlappables);
 	}
 
-//	public void overlapRule(UnitRobot p, UnitCenturion g) {
+	public void overlapRule(UnitRobot p, UnitCenturion g) {
+
+		universe.removeGameEntity(g);
+		score.setValue(score.getValue()+1);
+		Ennemi.remove(Ennemi.size()-1);
+		isEnd();
 //		if (!p.alive()) {
 //			if (g.alive()) {
 //				g.setAlive(false);
@@ -104,15 +94,21 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 //				}
 //			}
 //		}
-//	}
+	}
 	
+	private void isEnd() {
+		// TODO Auto-generated method stub
+		if(Ennemi.size()==0)
+		endOfGame.setValue(true);
+	}
+
 	public void overlapRule(UnitRobot p, power pw) {
 		
 		universe.removeGameEntity(pw);
-		//p.setInvulnerable(INVULNERABLE_DURATION);
-		//for (Ghost ghost : vGhosts) {
-		//	ghost.setAfraid(INVULNERABLE_DURATION);
-		//}
+		
+		for (UnitCenturion ennemi : Ennemi) {
+			ennemi.setWeak(Power_DURATION);
+		}
 	}
 
 	public void overlapRule(UnitCenturion g, power pw) {
@@ -121,7 +117,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		AgeAbstractFactory fact3 = new AgeMiddleFactory();
 		
 		for (int i = 0; i < 2; i++) {
-			UnitCenturion unit4=(UnitCenturion) fact3.infantryUnit(canvas, "Centurion");
+			UnitCenturion unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
 			Ennemi.addElement(unit4);
 			GameMovableDriverDefaultImpl UnitDriver4= new GameMovableDriverDefaultImpl();
 			MoveStrategyRandom key = new MoveStrategyRandom();
@@ -153,24 +149,6 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		}
 
 	}
-	
-//	public void setFirstAidKits(int firstAidKits){
-//		this.firstAidKits=firstAidKits;
-//		
-//	}
-//	public void addEnemy(UnitSimple u){
-//		// composite pattern
-//		//faire un Unit group 
-//	}
-//	
-//	@Override
-//	public void applyOverlapRules(Vector<Overlap> overlappables){
-//		//gerer la mort du soldats 
-//		super.applyOverlapRules(overlappables);
-//	}
-//	public void overlapRule(UnitSimple u ,UnitSimple i){
-//		
-//	}
 
 }
 
