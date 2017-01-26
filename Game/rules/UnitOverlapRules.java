@@ -72,28 +72,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		score.setValue(score.getValue()+1);
 		Ennemi.remove(Ennemi.size()-1);
 		isEnd();
-//		if (!p.alive()) {
-//			if (g.alive()) {
-//				g.setAlive(false);
-//				MoveStrategyStraightLine strat = new MoveStrategyStraightLine(
-//						g.getPosition(), EnnemiStartPos);
-//				GameMovableDriverDefaultImpl ghostDriv = (GameMovableDriverDefaultImpl) g
-//						.getDriver();
-//				ghostDriv.setStrategy(strat);
-//
-//			}
-//		} else {
-//			if (g.alive()) {
-//				if (Death) {
-//					life.setValue(life.getValue() - 1);
-//					p.setPosition(UnitStartPos);
-////					for (Ghost ghost : vGhosts) {
-////						ghost.setPosition(ghostStartPos);
-////					}
-//					Death = false;
-//				}
-//			}
-//		}
+
 	}
 	
 	private void isEnd() {
@@ -114,7 +93,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void overlapRule(UnitCenturion g, power pw) {
 		
 		universe.removeGameEntity(pw);
-		AgeAbstractFactory fact3 = new AgeMiddleFactory();
+		AgeAbstractFactory fact3 = AgeMiddleFactory.getInstance();
 		
 		for (int i = 0; i < 2; i++) {
 			UnitCenturion unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
@@ -134,7 +113,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void overlapRule(UnitRobot p, tresor tresor) {
 		
 		universe.removeGameEntity(tresor);
-		AgeAbstractFactory fact2 = new AgeFutureFactory();
+		AgeAbstractFactory fact2 = AgeFutureFactory.getInstance();
 		
 		for (int i = 0; i < 2; i++) {
 			

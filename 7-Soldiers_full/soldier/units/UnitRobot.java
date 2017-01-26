@@ -24,8 +24,8 @@ public class UnitRobot extends UnitInfantry {
 	public UnitRobot(Canvas canvas, String soldierName) {
 		super(soldierName, new BehaviorSoldierHealthBased(50, 100));
 		
-		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper2.gif", canvas, 40, 6);
-		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
+		this.spriteManager = new SpriteManagerDefaultImpl("images/sniper4.png", canvas, 40, 6);
+		this.spriteManager.setTypes("down", "left", "right", "up", "static", "strike" // Moves
 		);
 
 	}
@@ -53,8 +53,10 @@ public class UnitRobot extends UnitInfantry {
 			spriteType += "down";
 		else if (tmp.getY() == -1)
 			spriteType += "up";
+		else if (tmp.getX()==2)
+			spriteType+="strike";
 		else {
-			spriteType = "right";
+			spriteType = "static";
 			spriteManager.reset();
 			this.movable=false;
 
