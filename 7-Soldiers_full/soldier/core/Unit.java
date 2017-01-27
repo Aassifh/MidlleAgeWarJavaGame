@@ -5,11 +5,9 @@
 package soldier.core;
 
 import java.awt.Rectangle;
-import java.util.HashSet;
+
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+
 
 import gameframework.core.*;
 

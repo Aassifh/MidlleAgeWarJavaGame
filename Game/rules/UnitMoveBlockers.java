@@ -1,13 +1,8 @@
 package Game.rules;
 
-import java.util.Vector;
 
-
-import gameframework.core.Movable;
 import gameframework.moves_rules.IllegalMoveException;
-import gameframework.moves_rules.MoveBlocker;
-import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
-import gameframework.moves_rules.MoveBlockerRulesApplier;
+
 import gameframework.moves_rules.MoveBlockerRulesApplierDefaultImpl;
 import soldier.core.Unit;
 

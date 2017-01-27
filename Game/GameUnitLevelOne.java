@@ -2,9 +2,7 @@ package Game;
 
 import java.awt.Canvas;
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.Random;
-import java.util.Vector;
+
 
 import Game.entities.*;
 import Game.rules.PowerRule;
@@ -13,7 +11,7 @@ import Game.rules.UnitOverlapRules;
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
 import gameframework.core.GameLevelDefaultImpl;
-import gameframework.core.GameMovable;
+
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverseDefaultImpl;
 import gameframework.core.GameUniverseViewPortDefaultImpl;
@@ -21,15 +19,15 @@ import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
 import gameframework.moves_rules.MoveStrategyKeyboard;
 import gameframework.moves_rules.MoveStrategyRandom;
-import gameframework.moves_rules.MoveStrategyStraightLine;
+
 import gameframework.moves_rules.OverlapProcessor;
 import gameframework.moves_rules.OverlapProcessorDefaultImpl;
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
-import soldier.core.Unit;
+
 import soldier.core.UnitGroup;
-import soldier.core.UnitSimple;
+
 import soldier.units.UnitCenturion;
 import soldier.units.UnitHorseMan;
 import soldier.units.UnitRobot;

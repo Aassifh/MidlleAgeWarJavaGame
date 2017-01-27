@@ -7,15 +7,15 @@ package soldier.units;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observer;
 
-import gameframework.core.GameMovable;
+
+
 import gameframework.core.SpriteManagerDefaultImpl;
 import soldier.core.BreakingRuleException;
-import soldier.core.Unit;
+
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 import soldier.util.observable;

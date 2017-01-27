@@ -2,12 +2,12 @@ package Game.entities;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+
 
 import gameframework.core.Drawable;
 import gameframework.core.DrawableImage;
 import gameframework.core.GameEntity;
-import gameframework.moves_rules.MoveBlocker;
+
 
 public class Grass implements Drawable,GameEntity {
 	protected static DrawableImage image =null;

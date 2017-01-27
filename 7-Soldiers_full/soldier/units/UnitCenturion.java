@@ -7,18 +7,18 @@ package soldier.units;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 
-import gameframework.core.GameMovable;
+
+
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.SpriteManagerDefaultImpl;
-import gameframework.moves_rules.MoveStrategy;
+
 import gameframework.moves_rules.MoveStrategyStraightLine;
 import gameframework.moves_rules.SpeedVector;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
-import soldier.core.Unit;
+
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
 import soldier.util.observer;

@@ -8,14 +8,13 @@ import gameframework.core.GameUniverse;
 import gameframework.core.ObservableValue;
 import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveStrategyRandom;
-import gameframework.moves_rules.MoveStrategyStraightLine;
+
 import gameframework.moves_rules.Overlap;
 import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.AgeAbstractFactory;
-import soldier.core.BehaviorSoldier;
-import soldier.core.Unit;
+
 import soldier.core.UnitGroup;
 import soldier.units.UnitCenturion;
 import soldier.units.UnitHorseMan;

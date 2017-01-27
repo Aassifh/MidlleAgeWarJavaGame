@@ -7,10 +7,10 @@ package soldier.units;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 
-import gameframework.core.GameMovable;
+
+
 import gameframework.core.SpriteManagerDefaultImpl;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;

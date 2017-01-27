@@ -4,19 +4,11 @@
  */
 package soldier.core;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+
 import java.util.Collections;
 import java.util.Iterator;
 
-import gameframework.core.Drawable;
-import gameframework.core.GameEntity;
-import gameframework.core.GameMovable;
-import gameframework.core.GameMovableDriver;
-import gameframework.core.Overlappable;
-import gameframework.core.SpriteManager;
-import gameframework.moves_rules.SpeedVector;
+
 
 public abstract class UnitSimple extends Unit {
 
