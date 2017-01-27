@@ -34,6 +34,8 @@ public class UnitRobot extends UnitInfantry implements observable{
 				"strike-left","strike-right","strike-up","strike-down" ,
 				"dead"// Moves
 		);
+
+
 	}
 
 	/**
@@ -104,4 +106,11 @@ public class UnitRobot extends UnitInfantry implements observable{
 		}
 	}
 	
+	public void oneStepMoveAddedBehavior() {
+		if (movable){
+			this.spriteManager.increment();
+			//notifyObservers();
+		}
+
+	}
 }
