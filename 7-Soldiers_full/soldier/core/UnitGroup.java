@@ -74,7 +74,7 @@ public class UnitGroup extends Unit {
 				continue;
 			force = u.parry(force);
 		}
-		notifyObservers(this);
+		//notifyObservers(this);
 		return f;
 	}
 
@@ -148,5 +148,5 @@ public class UnitGroup extends Unit {
 	public int getNbUnit(){
 		return this.units.size();
 	}
-
+	
 }

@@ -8,17 +8,24 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Observer;
 
 import gameframework.core.GameMovable;
 import gameframework.core.SpriteManagerDefaultImpl;
-import observer_util.Observer;
 import soldier.core.BreakingRuleException;
 import soldier.core.Unit;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
+import soldier.util.observable;
+import soldier.util.observer;
 
-public class UnitRobot extends UnitInfantry {
 
+public class UnitRobot extends UnitInfantry implements observable{
+ 	
+	private List<observer> observersOrdered = new LinkedList<observer>();
+	
 	public UnitRobot(Canvas canvas, String soldierName) {
 		super(soldierName, new BehaviorSoldierHealthBased(50, 100));
 
@@ -27,6 +34,7 @@ public class UnitRobot extends UnitInfantry {
 				"strike-left","strike-right","strike-up","strike-down" ,
 				"dead"// Moves
 		);
+
 
 	}
 
@@ -75,6 +83,34 @@ public class UnitRobot extends UnitInfantry {
 
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
+		notifyObservers();
+	}
+
+	@Override
+	public void addObserver(observer ob) {
+		// TODO Auto-generated method stub
+		observersOrdered.add(ob);
+	}
+
+	@Override
+	public void removeObserver(observer ob) {
+		// TODO Auto-generated method stub
+		observersOrdered.remove(ob);
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		for (observer observer : observersOrdered) {
+			observer.update(this);
+		}
+	}
+	
+	public void oneStepMoveAddedBehavior() {
+		if (movable){
+			this.spriteManager.increment();
+			//notifyObservers();
+		}
 
 	}
 }

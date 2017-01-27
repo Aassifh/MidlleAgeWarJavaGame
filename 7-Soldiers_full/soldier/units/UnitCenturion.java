@@ -11,17 +11,25 @@ import java.awt.Rectangle;
 
 
 import gameframework.core.GameMovable;
+import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.SpriteManagerDefaultImpl;
+import gameframework.moves_rules.MoveStrategy;
+import gameframework.moves_rules.MoveStrategyStraightLine;
+import gameframework.moves_rules.SpeedVector;
 import soldier.core.BehaviorSoldierStd;
 import soldier.core.BreakingRuleException;
+import soldier.core.Unit;
 import soldier.core.UnitInfantry;
 import soldier.core.Weapon;
+import soldier.util.observer;
 
-public class UnitCenturion extends UnitInfantry {
+public class UnitCenturion extends UnitInfantry implements observer{
 	
 	
 	protected int weakTimer = 0;
 	protected int maxWeakTimer = 0;
+	protected MoveStrategyStraightLine moveStrat;
+	GameMovableDriverDefaultImpl UnitDriver4;
 	
 	public UnitCenturion(Canvas canvas,String soldierName){
 		super(soldierName, new BehaviorSoldierStd(50, 100));
@@ -29,6 +37,9 @@ public class UnitCenturion extends UnitInfantry {
 		this.spriteManager = new SpriteManagerDefaultImpl("images/soldat6.png", canvas, 30, 4);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
 		);
+		UnitDriver4= new GameMovableDriverDefaultImpl();
+		UnitDriver4.setStrategy(this.getMoveStrategy(this.getPosition(), new Point(0,0)));
+		this.setDriver(UnitDriver4);
 	}
 
 	/**
@@ -39,6 +50,18 @@ public class UnitCenturion extends UnitInfantry {
 		if (nbWeapons() > 1)
 			throw new BreakingRuleException();
 		super.addEquipment(w);
+	}
+	
+	public void changeDirection(SpeedVector m) {
+		Point direction = m.getDirection();
+		if (direction.getX() == 1)
+			this.spriteManager.setType("right");
+		else if (direction.getX() == -1)
+			this.spriteManager.setType("left");
+		else if (direction.getY() == 1)
+			this.spriteManager.setType("down");
+		else if (direction.getY() == -1)
+			this.spriteManager.setType("up");
 	}
 
 	@Override
@@ -67,7 +90,9 @@ public class UnitCenturion extends UnitInfantry {
 	}
 	
 	
-
+	public MoveStrategyStraightLine getMoveStrategy(Point pos, Point goal) {
+		return new MoveStrategyStraightLine(pos, goal);
+	}
 	
 
 	public boolean isWeak() {
@@ -77,5 +102,26 @@ public class UnitCenturion extends UnitInfantry {
 	public void setWeak(int timer) {
 		maxWeakTimer = weakTimer = timer;
 	}
+	
+	@Override
+	public void update(UnitRobot s) {
+		// TODO Auto-generated method stub
+		
+		//this.setMoveStrat(new MoveStrategyStraightLine(this.getPosition(), s.getPosition()));
+		UnitDriver4.setStrategy(this.getMoveStrategy(this.getPosition(), s.getPosition()));
+		//this.getMoveStrategy(this.getPosition(), s.getPosition());
+	}
+
+	public GameMovableDriverDefaultImpl getUnitDriver4() {
+		return UnitDriver4;
+	}
+
+	public void setMoveStrat(MoveStrategyStraightLine moveStrat) {
+		this.moveStrat = moveStrat;
+	}
+	
+//	public void oneStepMoveAddedBehavior() {
+//		this.changeDirection(this.getSpeedVector());
+//	}
 	
 }

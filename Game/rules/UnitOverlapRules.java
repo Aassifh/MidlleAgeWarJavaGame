@@ -8,6 +8,7 @@ import gameframework.core.GameUniverse;
 import gameframework.core.ObservableValue;
 import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveStrategyRandom;
+import gameframework.moves_rules.MoveStrategyStraightLine;
 import gameframework.moves_rules.Overlap;
 import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
 import soldier.ages.AgeFutureFactory;
@@ -134,7 +135,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 			Unit unit4=(UnitCenturion) fact3.infantryUnit(canvas, "C"+i);
 			this.army.addUnit(unit4);
 			GameMovableDriverDefaultImpl UnitDriver4= new GameMovableDriverDefaultImpl();
-			MoveStrategyRandom key = new MoveStrategyRandom();
+			MoveStrategyStraightLine key = new MoveStrategyStraightLine(EnnemiStartPos, UnitStartPos);
 			UnitDriver4.setStrategy(key);
 			UnitDriver4.setmoveBlockerChecker(moveBlockerChecker);
 			unit4.setDriver(UnitDriver4);
@@ -159,7 +160,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 			UnitDriver3.setStrategy(key);
 			UnitDriver3.setmoveBlockerChecker(moveBlockerChecker);
 			unit3.setDriver(UnitDriver3);
-			unit3.setPosition(new Point(13*16,25*16));
+			unit3.setPosition(new Point(5*16,25*16));
 			universe.addGameEntity(unit3);
 		}
 

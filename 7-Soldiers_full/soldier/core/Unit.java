@@ -11,37 +11,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import observer_util.Observable;
-import observer_util.Observer;
 import gameframework.core.*;
 
-public abstract class Unit extends GameMovable implements Drawable, GameEntity, Overlappable, Observable<Unit> {
+public abstract class Unit extends GameMovable implements Drawable, GameEntity, Overlappable{
 	protected SpriteManager spriteManager;
 	protected boolean movable = true;
-	private List<Observer<Unit>> observersOrdered = new LinkedList<Observer<Unit>>();
-	private Set<Observer<Unit>> observersSet = new HashSet<Observer<Unit>>();
 
-	@Override
-	public void addObserver(Observer<Unit> obs) {
-		if (!observersSet.contains(obs)) {
-			observersOrdered.add(obs);
-			observersSet.add(obs);
-		}
-	}
-
-	@Override
-	public void removeObserver(Observer<Unit> obs) {
-		observersOrdered.remove(obs);
-		observersSet.remove(obs);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void notifyObservers(Unit s) {
-		Object[] copy = observersOrdered.toArray();
-		for (Object u : copy)
-			((Observer<Unit>) u).update(s);
-	}
 
 	/**
 	 * Unit methods
@@ -95,6 +70,5 @@ public abstract class Unit extends GameMovable implements Drawable, GameEntity, 
 	public void oneStepMoveAddedBehavior() {
 		if (movable)
 			this.spriteManager.increment();
-
 	}
 }

@@ -21,6 +21,7 @@ import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
 import gameframework.moves_rules.MoveStrategyKeyboard;
 import gameframework.moves_rules.MoveStrategyRandom;
+import gameframework.moves_rules.MoveStrategyStraightLine;
 import gameframework.moves_rules.OverlapProcessor;
 import gameframework.moves_rules.OverlapProcessorDefaultImpl;
 import soldier.ages.AgeFutureFactory;
@@ -63,10 +64,10 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 			{ 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1 },
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
-			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
+			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 	
 	public static final int SPRITE_SIZE = 15;
@@ -124,17 +125,16 @@ public class GameUnitLevelOne extends GameLevelDefaultImpl{
 			fact = AgeMiddleFactory.getInstance();
 			UnitGroup army= new UnitGroup("army");
 
-		for (int i = 0; i < ENNEMI; i++) {
 			UnitCenturion unit3=(UnitCenturion) fact.infantryUnit(canvas, "Centurion");
 			army.addUnit(unit3);
-			GameMovableDriverDefaultImpl UnitDriver3= new GameMovableDriverDefaultImpl();
-			MoveStrategyRandom key = new MoveStrategyRandom();
-			UnitDriver3.setStrategy(key);
-			UnitDriver3.setmoveBlockerChecker(moveBlockerChecker);
-			unit3.setDriver(UnitDriver3);
-			unit3.setPosition(new Point((14+i)*SPRITE_SIZE,15*SPRITE_SIZE));
+			unit.addObserver(unit3);
+			//GameMovableDriverDefaultImpl UnitDriver3= new GameMovableDriverDefaultImpl();
+			//MoveStrategyStraightLine key = new MoveStrategyStraightLine(new Point(0,0), unit.getPosition());
+			//UnitDriver3.setStrategy(key);
+			unit3.getUnitDriver4().setmoveBlockerChecker(moveBlockerChecker);			
+			unit3.setPosition(new Point((14)*SPRITE_SIZE,15*SPRITE_SIZE));
 			universe.addGameEntity(unit3);
-		}
+		
 		
 		overlapRules.setEnnemi(army);
 		overlapRules.setMyArmy(Myarmy);

@@ -17,8 +17,6 @@ import gameframework.core.GameMovableDriver;
 import gameframework.core.Overlappable;
 import gameframework.core.SpriteManager;
 import gameframework.moves_rules.SpeedVector;
-import observer_util.ObservableAbstract;
-import observer_util.Observer;
 
 public abstract class UnitSimple extends Unit {
 
@@ -54,7 +52,7 @@ public abstract class UnitSimple extends Unit {
 	@Override
 	public float parry(float force) {
 		float result = behavior.parry(force);
-		notifyObservers(this);
+		//notifyObservers(this);
 		return result;
 	}
 
