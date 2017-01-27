@@ -23,7 +23,7 @@ public class UnitHorseMan extends UnitRider {
 	public UnitHorseMan(Canvas canvas,String soldierName) {
 		super(soldierName, new BehaviorSoldierStd(15, 100));
 		
-		this.spriteManager = new SpriteManagerDefaultImpl("images/horsman.gif", canvas, 32, 6);
+		this.spriteManager = new SpriteManagerDefaultImpl("images/soldat6.png", canvas, 30, 4);
 		this.spriteManager.setTypes("down", "left", "right", "up" // Moves
 		);
 	}

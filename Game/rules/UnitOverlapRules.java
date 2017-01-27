@@ -35,7 +35,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected Point EnnemiStartPos;
 	protected boolean Death;
 	Random rm = new Random();
-	int tour;
+	boolean tour;
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
@@ -84,23 +84,28 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void overlapRule(UnitRobot p, UnitCenturion g) {
 		
 	
-			tour= rm.nextInt(4);
+			tour= false;
 			System.out.println(tour);
-			if(tour >= 2){
+			if(tour == true){
 				g.parry(p.strike());
+				tour=false;
 			}else{
 				p.parry(g.strike());
+				life.setValue(life.getValue()-1);
+				tour=true;
 			}
 		
-			tour=0;
+			
 			
 		if(!g.alive()){
-			universe.removeGameEntity(g);
+			//universe.removeGameEntity(g);
 			army.removeUnit(g);
 		}
 		if(!p.alive()){
-			universe.removeGameEntity(p);
+			
 		}
+		if(life.getValue()==0)
+			universe.removeGameEntity(p);
 		
 		score.setValue(score.getValue()+1);
 		isEnd();
@@ -119,11 +124,7 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		MyArmy.heal();
 		
 		System.out.println(MyArmy.getHealthPoints());
-		//this.behavior.getValue().heal();
-		// typage pas juste 
-//		for (Unit ennemi : Ennemi) {
-//			((UnitCenturion)ennemi).setWeak(Power_DURATION);
-//		}
+
 	}
 
 	public void overlapRule(UnitCenturion g, power pw) {

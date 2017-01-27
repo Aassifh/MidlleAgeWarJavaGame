@@ -27,7 +27,7 @@ public class GameDefaultImpl implements Game, Observer {
 	protected static final int NB_COLUMNS = 28;
 	protected static final int SPRITE_SIZE = 16;
 	public static final int MAX_NUMBER_OF_PLAYER = 4;
-	public static final int NUMBER_OF_LIVES = 1;
+	public static final int NUMBER_OF_LIVES = 5;
 
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected ObservableValue<Integer> score[] = new ObservableValue[MAX_NUMBER_OF_PLAYER];

@@ -66,7 +66,7 @@ public class UnitCenturion extends UnitInfantry implements observer{
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		
 		String spriteType = "";
 		Point tmp = getSpeedVector().getDirection();
 
