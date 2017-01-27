@@ -99,16 +99,16 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 			
 		if(!g.alive()){
 			//universe.removeGameEntity(g);
-			army.removeUnit(g);
+			//army.removeUnit(g);
 		}
 		if(!p.alive()){
 			
 		}
-		if(life.getValue()==0)
-			universe.removeGameEntity(p);
+		//if(life.getValue()==0)
+			//universe.removeGameEntity(p);
 		
-		score.setValue(score.getValue()+1);
-		isEnd();
+		//score.setValue(score.getValue()+1);
+		//isEnd();
 
 	}
 	
@@ -122,9 +122,6 @@ public class UnitOverlapRules extends OverlapRulesApplierDefaultImpl {
 		
 		universe.removeGameEntity(pw);
 		MyArmy.heal();
-		
-		System.out.println(MyArmy.getHealthPoints());
-
 	}
 
 	public void overlapRule(UnitCenturion g, power pw) {

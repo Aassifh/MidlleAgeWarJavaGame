@@ -106,10 +106,7 @@ public class UnitCenturion extends UnitInfantry implements observer{
 	@Override
 	public void update(UnitRobot s) {
 		// TODO Auto-generated method stub
-		
-		//this.setMoveStrat(new MoveStrategyStraightLine(this.getPosition(), s.getPosition()));
 		UnitDriver4.setStrategy(this.getMoveStrategy(this.getPosition(), s.getPosition()));
-		//this.getMoveStrategy(this.getPosition(), s.getPosition());
 	}
 
 	public GameMovableDriverDefaultImpl getUnitDriver4() {
@@ -119,9 +116,5 @@ public class UnitCenturion extends UnitInfantry implements observer{
 	public void setMoveStrat(MoveStrategyStraightLine moveStrat) {
 		this.moveStrat = moveStrat;
 	}
-	
-//	public void oneStepMoveAddedBehavior() {
-//		this.changeDirection(this.getSpeedVector());
-//	}
 	
 }
